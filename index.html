@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Publicar Estado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .status-form {
+            margin: 20px auto;
+            max-width: 400px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            resize: none;
+            padding: 5px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        #estado-publicado {
+            margin-top: 30px;
+            padding: 10px;
+            border: 1px solid #333;
+        }
+    </style>
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger-cx/bootstrap.js?v=1"></script>
+</head>
+<body>
+    <h1>Publicar Estado</h1>
+    <div class="status-form">
+        <textarea id="status-input" placeholder="Escribe tu estado"></textarea>
+        <button onclick="publicarEstado()">Publicar</button>
+    </div>
+    <div id="estado-publicado"></div>
+
+    <script>
+        function publicarEstado() {
+            var estado = document.getElementById("status-input").value;
+            var estadoPublicado = document.getElementById("estado-publicado");
+
+            if (estado.trim() !== "") {
+                var estadoElement = document.createElement("p");
+                estadoElement.innerText = estado;
+                estadoPublicado.appendChild(estadoElement);
+                document.getElementById("status-input").value = "";
+            }
+        }
+
+        function mostrarMensajeEmergente() {
+            setTimeout(function () {
+                var dfMessenger = document.querySelector("df-messenger");
+                dfMessenger.addUserMessage("Hola, soy tu chatbot personal. ¿En qué puedo ayudarte?");
+            }, 1000);
+        }
+
+        mostrarMensajeEmergente();
+    </script>
+
+    <df-messenger
+        df-cx="true"
+        location="us-central1"
+        chat-title="Experimentos"
+        agent-id="cbbb76b3-b0c4-4d82-9e3e-aa0d5496c263"
+        language-code="es"
+    ></df-messenger>
+</body>
+</html>
