@@ -64,7 +64,8 @@
 
         function mostrarMensajeEmergente() {
             setTimeout(function () {
-                dfMessenger.showWelcomeMessage();
+                var dfMessenger = document.querySelector("df-messenger");
+                dfMessenger.addUserMessage("Hola, soy tu chatbot personal. ¿En qué puedo ayudarte?");
             }, 1000);
         }
 
