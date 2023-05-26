@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Publicar Estado</title>
     <style>
         body {
@@ -39,17 +39,7 @@
             border: 1px solid #333;
         }
     </style>
-<df-messenger
-  df-cx="true"
-  location="us-central1"
-  chat-title="Experimentos"
-  agent-id="cbbb76b3-b0c4-4d82-9e3e-aa0d5496c263"
-  language-code="es
-  intent="welcome"
-></df-messenger>
-<script src="https://www.gstatic.com/dialogflow-console/fast/messenger-cx/bootstrap.js?v=1"></script>
-
-este es el codigo de dialogflow cx en el index.html
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger-cx/bootstrap.js?v=1"></script>
 </head>
 <body>
     <h1>Publicar Estado</h1>
@@ -63,7 +53,7 @@ este es el codigo de dialogflow cx en el index.html
         function publicarEstado() {
             var estado = document.getElementById("status-input").value;
             var estadoPublicado = document.getElementById("estado-publicado");
-            
+
             if (estado.trim() !== "") {
                 var estadoElement = document.createElement("p");
                 estadoElement.innerText = estado;
@@ -71,7 +61,22 @@ este es el codigo de dialogflow cx en el index.html
                 document.getElementById("status-input").value = "";
             }
         }
+
+        function mostrarMensajeEmergente() {
+            setTimeout(function () {
+                dfMessenger.showWelcomeMessage();
+            }, 1000);
+        }
+
+        mostrarMensajeEmergente();
     </script>
 
+    <df-messenger
+        df-cx="true"
+        location="us-central1"
+        chat-title="Experimentos"
+        agent-id="cbbb76b3-b0c4-4d82-9e3e-aa0d5496c263"
+        language-code="es"
+    ></df-messenger>
 </body>
 </html>
